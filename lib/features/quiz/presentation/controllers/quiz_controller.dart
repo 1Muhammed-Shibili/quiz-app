@@ -11,6 +11,8 @@ class QuizController extends GetxController {
   final isLoading = true.obs;
   final userAnswers = <int, int>{}.obs;
   final showSolution = false.obs;
+  final showMotivationPopup = false.obs;
+  final isAnswerCorrect = false.obs;
 
   QuizController({required this.repository});
 
@@ -55,6 +57,10 @@ class QuizController extends GetxController {
       } else {
         _moveToNext();
       }
+      showMotivationPopup.value = true;
+      Future.delayed(Duration(seconds: 2), () {
+        showMotivationPopup.value = false;
+      });
     }
   }
 

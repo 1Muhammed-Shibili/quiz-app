@@ -6,10 +6,23 @@ class ResultsScreen extends GetView<QuizController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Quiz Results')),
+      backgroundColor: Colors.grey[900],
+      appBar: AppBar(
+        backgroundColor: Colors.black87,
+        title: Text(
+          'Quiz Results',
+          style: TextStyle(
+              fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+      ),
       body: Obx(() {
         if (controller.quiz.value == null) {
-          return Center(child: Text('No quiz data available'));
+          return Center(
+            child: Text(
+              'No quiz data available',
+              style: TextStyle(fontSize: 18, color: Colors.white),
+            ),
+          );
         }
 
         final quiz = controller.quiz.value!;
@@ -31,48 +44,73 @@ class ResultsScreen extends GetView<QuizController> {
             : '0';
 
         return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Quiz Complete!',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Card(
+              color: Colors.grey[900],
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
               ),
-              SizedBox(height: 20),
-              Text(
-                'Final Score: ${controller.score}',
-                style: TextStyle(fontSize: 22),
-              ),
-              SizedBox(height: 10),
-              Text(
-                'Correct Answers: $correctAnswers / $totalQuestions',
-                style: TextStyle(fontSize: 18),
-              ),
-              SizedBox(height: 10),
-              Text(
-                'Accuracy: $accuracy%',
-                style: TextStyle(fontSize: 18),
-              ),
-              SizedBox(height: 10),
-              Text(
-                'Total Mistakes: ${controller.mistakes}',
-                style: TextStyle(fontSize: 18),
-              ),
-              SizedBox(height: 30),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Quiz Complete!',
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.greenAccent,
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Text(
+                      'Final Score: ${controller.score}',
+                      style: TextStyle(fontSize: 24, color: Colors.white),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'Correct Answers: $correctAnswers / $totalQuestions',
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'Accuracy: $accuracy%',
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'Total Mistakes: ${controller.mistakes}',
+                      style: TextStyle(fontSize: 20, color: Colors.redAccent),
+                    ),
+                    SizedBox(height: 30),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.greenAccent,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        elevation: 5,
+                      ),
+                      onPressed: () {
+                        controller.restartQuiz();
+                        Get.offAllNamed('/');
+                      },
+                      child: Text(
+                        'Try Again',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
                 ),
-                onPressed: () {
-                  controller.restartQuiz();
-                  Get.offAllNamed('/');
-                },
-                child: Text(
-                  'Try Again',
-                  style: TextStyle(fontSize: 18),
-                ),
               ),
-            ],
+            ),
           ),
         );
       }),
