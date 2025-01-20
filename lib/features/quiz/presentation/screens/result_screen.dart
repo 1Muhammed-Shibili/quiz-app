@@ -8,6 +8,7 @@ class ResultsScreen extends GetView<QuizController> {
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Colors.black87,
         title: Text(
           'Quiz Results',
@@ -89,7 +90,7 @@ class ResultsScreen extends GetView<QuizController> {
                     SizedBox(height: 30),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.greenAccent,
+                        backgroundColor: Colors.grey[800],
                         padding:
                             EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                         shape: RoundedRectangleBorder(
@@ -104,7 +105,10 @@ class ResultsScreen extends GetView<QuizController> {
                       child: Text(
                         'Try Again',
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ],

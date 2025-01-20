@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/features/quiz/presentation/controllers/quiz_controller.dart';
 
@@ -88,10 +89,10 @@ class QuizScreen extends GetView<QuizController> {
                             children: [
                               Padding(
                                 padding: EdgeInsets.all(16.0),
-                                child: Text(
+                                child: HtmlWidget(
                                   question.readingMaterial!.contentSections
                                       .join('\n'),
-                                  style: TextStyle(color: Colors.white),
+                                  textStyle: TextStyle(color: Colors.white),
                                 ),
                               ),
                             ],
@@ -146,32 +147,13 @@ class QuizScreen extends GetView<QuizController> {
                             ),
                           ),
                           SizedBox(height: 8),
-                          Text(
+                          HtmlWidget(
                             question.detailedSolution,
-                            style: TextStyle(color: Colors.white70),
+                            textStyle: TextStyle(color: Colors.white70),
                           ),
                         ],
                       ),
                     ),
-                  ),
-                ],
-                if (controller.showMotivationPopup.value) ...[
-                  SizedBox(height: 30),
-                  AnimatedSwitcher(
-                    duration: Duration(seconds: 1),
-                    child: controller.isAnswerCorrect.value
-                        ? Icon(
-                            Icons.thumb_up_alt_rounded,
-                            color: Colors.green,
-                            size: 100,
-                            key: ValueKey<int>(1),
-                          )
-                        : Icon(
-                            Icons.sentiment_very_satisfied_rounded,
-                            color: Colors.cyan,
-                            size: 100,
-                            key: ValueKey<int>(2),
-                          ),
                   ),
                 ],
               ],

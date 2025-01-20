@@ -56,7 +56,7 @@ class Question {
   final String topic;
   final String detailedSolution;
   final List<Option> options;
-  final ReadingMaterial? readingMaterial; // Added this back
+  final ReadingMaterial? readingMaterial;
 
   Question({
     required this.id,
@@ -64,7 +64,7 @@ class Question {
     required this.topic,
     required this.detailedSolution,
     required this.options,
-    this.readingMaterial, // Added to constructor
+    this.readingMaterial,
   });
 
   factory Question.fromJson(Map<String, dynamic> json) {
@@ -104,7 +104,6 @@ class ReadingMaterial {
             return decoded.map((e) => e.toString()).toList();
           }
         } catch (e) {
-          // If parsing fails, return empty list
           return [];
         }
       }
